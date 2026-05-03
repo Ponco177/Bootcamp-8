@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Ponco</title>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">Ponco.dev</a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+            ☰
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Header</a></li>
+                <li class="nav-item"><a class="nav-link" href="#biodata">Biodata</a></li>
+                <li class="nav-item"><a class="nav-link" href="#portofolio">Portofolio</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="container py-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h2>Selamat Datang di Website Saya</h2>
+            <p>Saya adalah web developer yang sedang belajar membuat website modern.</p>
+
+            <!-- BUTTON MODAL -->
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                Lihat Detail
+            </button>
+        </div>
+
+        <div class="col-md-6 text-center">
+            <img src="c:\Users\LENOOVO\Documents\GitHub\Bootcamp-8\sesi-2\foto profile.jfif" class="img-fluid rounded-circle" width="250">
+        </div>
+    </div>
+</section>
+
+<!-- BIODATA -->
+<section id="biodata" class="bg-light py-5">
+    <div class="container text-center">
+        <h2>About Me</h2>
+        <div class="row mt-4">
+
+            <div class="col-md-4 mb-3">
+                <div class="card p-3">Full Name<br><b>Ponco Wicaksono</b></div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card p-3">Education<br><b>SMK</b></div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card p-3">Pekerjaan<br><b>Pelajar</b></div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card p-3">Contact<br><b>0812345678</b></div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card p-3">Hobi<br><b>Gaming</b></div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card p-3">Alamat<br><b>Jakarta</b></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- PORTOFOLIO -->
+<section id="portofolio" class="container py-5 text-center">
+    <h2>My Projects</h2>
+
+    <div class="row mt-4">
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="https://picsum.photos/400/200?1" class="card-img-top">
+                <div class="card-body">
+                    <h5>Proyek 1</h5>
+                    <p>Deskripsi proyek 1</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="https://picsum.photos/400/200?2" class="card-img-top">
+                <div class="card-body">
+                    <h5>Proyek 2</h5>
+                    <p>Deskripsi proyek 2</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="https://picsum.photos/400/200?3" class="card-img-top">
+                <div class="card-body">
+                    <h5>Proyek 3</h5>
+                    <p>Deskripsi proyek 3</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Tentang Saya</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                Halo! Saya Ponco, seorang pelajar yang sedang belajar web development.
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- BOOTSTRAP JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
