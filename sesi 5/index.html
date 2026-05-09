@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TokoModern</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#f5f5f5;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      width:100%;
+      background:white;
+      padding:18px 70px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      font-size:32px;
+      font-weight:bold;
+      color:#3b5bff;
+    }
+
+    nav ul{
+      display:flex;
+      gap:35px;
+      list-style:none;
+    }
+
+    nav ul li{
+      cursor:pointer;
+      font-size:18px;
+      color:#333;
+    }
+
+    nav ul li:hover{
+      color:#3b5bff;
+    }
+
+    /* CONTAINER */
+
+    .container{
+      width:90%;
+      margin:40px auto;
+    }
+
+    /* FILTER */
+
+    .filter-box{
+      background:white;
+      padding:35px;
+      border-radius:20px;
+
+      display:flex;
+      justify-content:space-between;
+      gap:40px;
+
+      box-shadow:0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .search-area{
+      width:50%;
+    }
+
+    .search-area h3,
+    .filter-area h3{
+      margin-bottom:15px;
+      color:#222;
+    }
+
+    .search-area input{
+      width:100%;
+      padding:18px;
+      border-radius:14px;
+      border:2px solid #d8ddff;
+      outline:none;
+      font-size:20px;
+    }
+
+    .filter-area{
+      width:50%;
+    }
+
+    .buttons{
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .buttons button{
+      padding:12px 22px;
+      border-radius:30px;
+      border:2px solid #3b5bff;
+      background:white;
+      color:#3b5bff;
+      font-size:17px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .buttons button.active,
+    .buttons button:hover{
+      background:#3b5bff;
+      color:white;
+    }
+
+    /* PRODUK */
+
+    .product-container{
+      margin-top:45px;
+
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:white;
+      border-radius:18px;
+      overflow:hidden;
+
+      box-shadow:0 5px 18px rgba(0,0,0,0.08);
+
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+    }
+
+    .card-image{
+      position:relative;
+    }
+
+    .card img{
+      width:100%;
+      height:230px;
+      object-fit:cover;
+    }
+
+    .kategori{
+      position:absolute;
+      top:15px;
+      right:15px;
+
+      background:#3b5bff;
+      color:white;
+
+      padding:8px 15px;
+      border-radius:20px;
+
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    .card-content{
+      padding:22px;
+    }
+
+    .card-content h2{
+      margin-bottom:12px;
+      color:#222;
+    }
+
+    .card-content p{
+      color:#555;
+      line-height:1.6;
+      margin-bottom:20px;
+    }
+
+    .harga{
+      font-size:34px;
+      color:#3b5bff;
+      font-weight:bold;
+      margin-bottom:20px;
+    }
+
+    .detail-btn{
+      width:100%;
+      padding:14px;
+      border-radius:30px;
+
+      border:2px solid #3b5bff;
+
+      background:white;
+      color:#3b5bff;
+
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .detail-btn:hover{
+      background:#3b5bff;
+      color:white;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .filter-box{
+        flex-direction:column;
+      }
+
+      .search-area,
+      .filter-area{
+        width:100%;
+      }
+
+      nav{
+        padding:18px 25px;
+      }
+
+      .logo{
+        font-size:24px;
+      }
+
+      nav ul{
+        gap:15px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="logo">
+      TokoModern
+    </div>
+
+    <ul>
+      <li>Beranda</li>
+      <li>Katalog</li>
+      <li>Tentang</li>
+    </ul>
+
+  </nav>
+
+
+  <!-- CONTAINER -->
+
+  <div class="container">
+
+
+    <!-- FILTER -->
+
+    <div class="filter-box">
+
+      <div class="search-area">
+
+        <h3>Cari Produk</h3>
+
+        <input 
+          type="text"
+          placeholder="Cari produk..."
+          id="searchInput"
+          onkeyup="searchProduk()"
+        >
+
+      </div>
+
+
+      <div class="filter-area">
+
+        <h3>Filter Kategori</h3>
+
+        <div class="buttons">
+
+          <button class="active" onclick="filterProduk('Semua', this)">
+            Semua
+          </button>
+
+          <button onclick="filterProduk('Elektronik', this)">
+            Elektronik
+          </button>
+
+          <button onclick="filterProduk('Fashion', this)">
+            Fashion
+          </button>
+
+          <button onclick="filterProduk('Rumah Tangga', this)">
+            Rumah Tangga
+          </button>
+
+          <button onclick="filterProduk('Olahraga', this)">
+            Olahraga
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- PRODUK -->
+
+    <div class="product-container" id="productContainer">
+
+    </div>
+
+  </div>
+
+
+
+  <script>
+
+    // DATA PRODUK
+
+    // GANTI const produk = [...] YANG LAMA MENJADI INI
+
+const produk = [
+
+        {
+            nama:"iPhone 15 Pro",
+            deskripsi:"Smartphone premium dengan kamera canggih.",
+            harga:"Rp 18.000.000",
+            kategori:"Elektronik",
+            gambar:"https://images.unsplash.com/photo-1695048133142-1a20484d2569"
+        },
+
+        {
+            nama:"Samsung Galaxy S24",
+            deskripsi:"Layar AMOLED tajam dan performa cepat.",
+            harga:"Rp 15.500.000",
+            kategori:"Elektronik",
+            gambar:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf"
+        },
+
+        {
+            nama:"Laptop ASUS ROG",
+            deskripsi:"Laptop gaming dengan performa tinggi.",
+            harga:"Rp 22.000.000",
+            kategori:"Elektronik",
+            gambar:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
+        },
+
+        {
+            nama:"AirPods Pro",
+            deskripsi:"Earbuds wireless dengan noise cancelling.",
+            harga:"Rp 3.500.000",
+            kategori:"Elektronik",
+            gambar:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46"
+        },
+
+        {
+            nama:"Smartwatch Ultra",
+            deskripsi:"Jam pintar modern untuk aktivitas harian.",
+            harga:"Rp 2.000.000",
+            kategori:"Elektronik",
+            gambar:"https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+        },
+
+        {
+            nama:"Kaos Oversize",
+            deskripsi:"Kaos nyaman dengan desain modern.",
+            harga:"Rp 120.000",
+            kategori:"Fashion",
+            gambar:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
+        },
+
+        {
+            nama:"Hoodie Hitam",
+            deskripsi:"Hoodie tebal dan stylish.",
+            harga:"Rp 250.000",
+            kategori:"Fashion",
+            gambar:"https://images.unsplash.com/photo-1556821840-3a63f95609a7"
+        },
+
+        {
+            nama:"Jaket Denim",
+            deskripsi:"Jaket denim cocok untuk outfit casual.",
+            harga:"Rp 350.000",
+            kategori:"Fashion",
+            gambar:"https://images.unsplash.com/photo-1541099649105-f69ad21f3246"
+        },
+
+        {
+            nama:"Sneakers Putih",
+            deskripsi:"Sepatu sneakers kekinian dan nyaman.",
+            harga:"Rp 700.000",
+            kategori:"Fashion",
+            gambar:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
+        },
+
+        {
+            nama:"Tas Selempang",
+            deskripsi:"Tas simpel untuk aktivitas sehari-hari.",
+            harga:"Rp 180.000",
+            kategori:"Fashion",
+            gambar:"https://images.unsplash.com/photo-1591561954557-26941169b49e"
+        },
+
+        {
+            nama:"Blender Portable",
+            deskripsi:"Blender mini praktis untuk dapur.",
+            harga:"Rp 280.000",
+            kategori:"Rumah Tangga",
+            gambar:"https://images.unsplash.com/photo-1570222094114-d054a817e56b"
+        },
+
+        {
+            nama:"Rice Cooker",
+            deskripsi:"Memasak nasi lebih cepat dan hemat listrik.",
+            harga:"Rp 450.000",
+            kategori:"Rumah Tangga",
+            gambar:"https://images.unsplash.com/photo-1586201375761-83865001e31c"
+        },
+
+        {
+            nama:"Vacuum Cleaner",
+            deskripsi:"Pembersih rumah dengan daya hisap kuat.",
+            harga:"Rp 1.200.000",
+            kategori:"Rumah Tangga",
+            gambar:"https://images.unsplash.com/photo-1558317374-067fb5f30001"
+        },
+
+        {
+            nama:"Kursi Gaming",
+            deskripsi:"Kursi nyaman untuk bermain dan bekerja.",
+            harga:"Rp 2.300.000",
+            kategori:"Rumah Tangga",
+            gambar:"https://images.unsplash.com/photo-1592078615290-033ee584e267"
+        },
+
+        {
+            nama:"Rak Minimalis",
+            deskripsi:"Rak estetik untuk dekorasi rumah.",
+            harga:"Rp 650.000",
+            kategori:"Rumah Tangga",
+            gambar:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+        },
+
+        {
+            nama:"Sepatu Running",
+            deskripsi:"Sepatu olahraga ringan dan fleksibel.",
+            harga:"Rp 850.000",
+            kategori:"Olahraga",
+            gambar:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
+        },
+
+        {
+            nama:"Dumbbell 10KG",
+            deskripsi:"Cocok untuk latihan di rumah.",
+            harga:"Rp 400.000",
+            kategori:"Olahraga",
+            gambar:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438"
+        },
+
+        {
+            nama:"Sepeda Gunung",
+            deskripsi:"Sepeda tangguh untuk berbagai medan.",
+            harga:"Rp 4.500.000",
+            kategori:"Olahraga",
+            gambar:"https://images.unsplash.com/photo-1508979828023-0c1b4a6f31d4"
+        },
+
+        {
+            nama:"Matras Yoga",
+            deskripsi:"Matras empuk dan anti slip.",
+            harga:"Rp 150.000",
+            kategori:"Olahraga",
+            gambar:"https://images.unsplash.com/photo-1518611012118-696072aa579a"
+        },
+
+        {
+            nama:"Botol Sport",
+            deskripsi:"Botol minum praktis untuk olahraga.",
+            harga:"Rp 90.000",
+            kategori:"Olahraga",
+            gambar:"https://images.unsplash.com/photo-1602143407151-7111542de6e8"
+        }
+
+        ];
+
+
+    let kategoriAktif = "Semua";
+
+
+    // TAMPILKAN PRODUK
+
+    function tampilkanProduk(data){
+
+      const container = document.getElementById("productContainer");
+
+      container.innerHTML = "";
+
+      data.forEach(item => {
+
+        container.innerHTML += `
+
+          <div class="card">
+
+            <div class="card-image">
+
+              <img src="${item.gambar}">
+
+              <div class="kategori">
+                ${item.kategori}
+              </div>
+
+            </div>
+
+
+            <div class="card-content">
+
+              <h2>${item.nama}</h2>
+
+              <p>${item.deskripsi}</p>
+
+              <div class="harga">
+                ${item.harga}
+              </div>
+
+              <button class="detail-btn">
+                Lihat Detail
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+    }
+
+
+
+    // FILTER
+
+    function filterProduk(kategori, tombol){
+
+      kategoriAktif = kategori;
+
+      const semuaBtn = document.querySelectorAll(".buttons button");
+
+      semuaBtn.forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+      tombol.classList.add("active");
+
+      searchProduk();
+
+    }
+
+
+
+    // SEARCH
+
+    function searchProduk(){
+
+      const keyword = document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase();
+
+
+      const hasil = produk.filter(item => {
+
+        const cocokKategori = 
+        kategoriAktif === "Semua" ||
+        item.kategori === kategoriAktif;
+
+
+        const cocokSearch =
+        item.nama.toLowerCase().includes(keyword);
+
+
+        return cocokKategori && cocokSearch;
+
+      });
+
+
+      tampilkanProduk(hasil);
+
+    }
+
+
+
+    // TAMPILKAN AWAL
+
+    tampilkanProduk(produk);
+
+  </script>
+
+</body>
+</html>
